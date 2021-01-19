@@ -7,6 +7,39 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.0/alpine.js"></script>
     </head>
     <body>
-        Start here!
+        <script>
+            function repo(suffix) {
+                return 'https://github.com/markfirmware/alpinejs-' + suffix;
+            }
+            function gitpod(repo) {
+                return 'https://gitpod.io#' + repo;
+            }
+        </script>
+        <div>
+            <a class="underline" href="https://github.com/markfirmware/alpinejs-three">
+                (This is markfirmware/alpinejs-three - the list of alpinejs site repos)
+            </a>
+        </div>
+        <div>
+            This is a list of alpinejs-implemented site repositories.
+        </div>
+        <div>
+            It is hand-made but will later be created by searching and analyzing gh repos.
+        </div>
+        <div x-data="{ suffixes: ['one', 'two', 'three'] }">
+            <ul>
+                <template x-for="suffix in suffixes" :key="suffix">
+                    <li>
+                        <button
+                            class="border bg-gray-200 hover:bg-gray-300 border-gray-400"
+                            @click="window.open(gitpod(repo(suffix)))">
+                            gitpod
+                        </button>
+                        <a :href="repo(suffix)" x-text="repo(suffix)" class="underline">
+                        </a>
+                    </li>
+                </template>
+            </ul>
+        </div>
     </body>
 </html>
